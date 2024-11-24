@@ -1,0 +1,419 @@
+:root {
+    --main-bg: #869bf2;
+    --card-bg: #d1daff;
+    --header-bg: #3059fc;
+    --timer-bg: #fcb5b5;
+    --dropdown-bg: #3e3e3e;
+    --text-white: #ffffffe0;
+    --white: #ffffff;
+    --black: #181818;
+    --overlay-bg: rgba(255, 0, 0, 0.18);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter-Regular", Helvetica;
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.desktop-versie {
+    background-color: var(--main-bg);
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Top Navigation */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 17px;
+}
+
+.zoekfunctie {
+    width: 257px;
+}
+
+.search-box {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: "K2D-Regular", Helvetica;
+    font-size: 16px;
+}
+
+.dropdown-oefeningen {
+    position: relative;
+    display: inline-block;
+    width: 257px;
+}
+
+.dropdown-button {
+    background-color: var(--dropdown-bg);
+    color: var(--text-white);
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-bg);
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 10px;
+    /* margin-top: 4px; */
+}
+
+.dropdown-content a {
+    color: var(--text-white);
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #4e4e4e;
+    border-radius: 10px;
+}
+
+.dropdown-oefeningen:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-oefeningen:hover .dropdown-button {
+    background-color: #4e4e4e;
+}
+
+.bench-oefeningen {
+    font-family: "K2D-Bold", Helvetica;
+    color: var(--text-white);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Bovenste Kaart */
+.bovenste-kaart-wrapper {
+    background-color: var(--overlay-bg);
+    padding: 57px 0;
+    box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+}
+
+.bovenste-kaart {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Shared Card Styles */
+.card-content {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+}
+
+.exercise-gif {
+    width: 100%;
+    object-fit: cover;
+}
+
+.exercise-details {
+    padding: 20px;
+    padding-bottom: 60px;
+}
+
+.exercise-title {
+    background-color: var(--header-bg);
+    color: var(--white);
+    text-align: center;
+    padding: 8px 16px;
+    margin: -20px -20px 20px;
+    font-family: "K2D-Bold", Helvetica;
+}
+
+.exercise-description {
+    color: var(--black);
+    line-height: 1.5;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+/* Timer Display */
+.timer-display {
+    position: absolute;
+    bottom: -3px;
+    left: -3px;
+    background-color: var(--timer-bg);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+/* Exercise Stats */
+.exercise-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    background: var(--timer-bg);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--black);
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* Bovenste Kaart Specific Styles */
+.bovenste-kaart .exercise-gif {
+    height: 300px;
+}
+
+.bovenste-kaart .exercise-description {
+    font-size: 16px;
+}
+
+.bovenste-kaart .exercise-title {
+    font-size: 24px;
+}
+
+.bovenste-kaart .timer-display {
+    width: 290px;
+}
+
+.bovenste-kaart .timer-icon {
+    width: 95px;
+    height: 95px;
+}
+
+.bovenste-kaart .time {
+    font-size: 55px;
+}
+
+.bovenste-kaart .stat-label,
+.bovenste-kaart .stat-value {
+    font-size: 25px;
+}
+
+/* Regular Exercise Cards */
+.exercises-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.section-title {
+    grid-column: 1 / -1;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.exercise-card .exercise-gif {
+    height: 200px;
+}
+
+.exercise-card .exercise-title {
+    font-size: 18px;
+}
+
+.exercise-card .timer-display {
+    width: 148px;
+}
+
+.exercise-card .timer-icon {
+    width: 55px;
+    height: 55px;
+}
+
+.exercise-card .time {
+    font-size: 32px;
+}
+
+/* Hover Effects */
+.exercise-card:hover,
+.bovenste-kaart:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .zoekfunctie,
+    .dropdown-oefeningen {
+        width: 100%;
+    }
+
+    .bovenste-kaart {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .bovenste-kaart .exercise-gif {
+        height: 200px;
+    }
+
+    .bovenste-kaart .timer-display {
+        width: 200px;
+    }
+
+    .bovenste-kaart .timer-icon {
+        width: 65px;
+        height: 65px;
+    }
+
+    .bovenste-kaart .time {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .stat-value {
+        font-size: 14px;
+    }
+}
+
+/* Shared card styles */
+.card-content {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+}
+
+.exercise-details {
+    padding: 20px;
+    padding-bottom: 60px;
+}
+
+.exercise-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    background: var(--timer-bg);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.exercise-description {
+    color: var(--black);
+    line-height: 1.5;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+/* Bovenste Kaart specific styles */
+.bovenste-kaart .card-content {
+    min-height: 900px;
+}
+
+.bovenste-kaart .exercise-details {
+    padding: 40px;
+    padding-bottom: 120px;
+}
+
+.bovenste-kaart .exercise-stats {
+    margin: 50px 0;
+    padding: 30px;
+    gap: 30px;
+}
+
+.bovenste-kaart .exercise-description {
+    font-size: 20px;
+    line-height: 1.7;
+    margin: 50px 0;
+    padding: 40px 0;
+}
+
+.bovenste-kaart .exercise-gif {
+    height: 500px;
+}
+
+.bovenste-kaart .timer-display {
+    width: 350px;
+    padding: 20px;
+    bottom: -5px;
+    left: -5px;
+}
+
+.bovenste-kaart .timer-icon {
+    width: 110px;
+    height: 110px;
+}
+
+.bovenste-kaart .time {
+    font-size: 65px;
+}
+
+.bovenste-kaart .stat-label,
+.bovenste-kaart .stat-value {
+    font-size: 28px;
+}

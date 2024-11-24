@@ -1,0 +1,19 @@
+uiop7890UIOP&*()
+
+oefeningen
+
+sets
+
+per week
+
+duur
+
+omschrijving
+
+foto (https://stackoverflow.com/questions/14704559/how-to-insert-image-in-mysql-databasetable)
+
+use lutsendb;
+INSERT INTO oefeningen (oefening)VALUES('halters')
+
+database starten in cmd:
+python -m flask run --debug

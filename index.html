@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fitness Oefeningen</title>
+        <link rel="stylesheet" href="style1.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="card-container">
+                <div class="foto">
+                    <img id="afbeelding" src="" alt="fitness" />
+                </div>
+                <div class="gegevens" id="oefening"></div>
+                <table>
+                    <tr>
+
+                        <td>Sets</td><td><div class="gegevens" id="sets"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Duur</td><td><div class="gegevens" id="duur"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Aantal</td><td><div class="gegevens" id="aantal"></div></td>
+                    </tr>
+            </table>
+            <div class="gegevens" id="omschrijving"></div></td>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="foto">
+                <img id="afbeelding1" src="" alt="fitness" />
+            </div>
+            <div class="gegevens" id="oefening1"></div>
+            <table>
+                <tr>
+                    <td>Sets</td>
+                    <td><div class="gegevens" id="sets1"></div></td>
+                </tr>
+                <tr>
+                    <td>Duur</td>
+                    <td><div class="gegevens" id="duur1"></div></td>
+                </tr>
+                <tr>
+                    <td>Aantal</td>
+                    <td><div class="gegevens" id="aantal1"></div></td>
+                </tr>
+
+            </table>
+            <h4>omschrijving:</h4>
+            <div class="gegevens" id="omschrijving1"></div>
+        </div>
+    </body>
+</html>
+
+<script>
+    fetch("http://127.0.0.1:5000//bench_oefeningen")
+        .then((r) => r.json())
+        .then((d) => toonOefeningen(d));
+
+    function toonOefeningen(bench_oefeningen) {
+        console.log(bench_oefeningen);
+        document.getElementById("afbeelding").src = bench_oefeningen[0].foto;
+        document.getElementById("duur").innerHTML = bench_oefeningen[0].duur;
+        document.getElementById(
+            "oefening"
+        ).innerHTML = `<h1> ${bench_oefeningen[0].Oefeningen} </h1>`;
+        document.getElementById("sets").innerHTML =
+            bench_oefeningen[0].Sets + "x";
+        document.getElementById("aantal").innerHTML =
+            bench_oefeningen[0].Aantal_keer + "x";
+        document.getElementById("omschrijving").innerHTML =
+            bench_oefeningen[0].Omschrijving;
+
+        // tweede oefening
+        console.log(bench_oefeningen);
+        document.getElementById("afbeelding1").src = bench_oefeningen[1].foto;
+        document.getElementById("duur1").innerHTML = bench_oefeningen[1].duur;
+        document.getElementById(
+            "oefening1"
+        ).innerHTML = `<h1> ${bench_oefeningen[1].Oefeningen} </h1>`;
+        document.getElementById("sets1").innerHTML =
+            bench_oefeningen[1].Sets + "x";
+        document.getElementById("aantal1").innerHTML =
+            bench_oefeningen[1].Aantal_keer + "x";
+        document.getElementById("omschrijving1").innerHTML =
+            bench_oefeningen[1].Omschrijving;
+    }
+</script>

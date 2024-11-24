@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nieuwe Oefening Aanmaken</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="inner">
+            <h1>Nieuwe Oefening Toevoegen</h1>
+            <form id="newExerciseForm" class="exercise-form">
+                <div class="form-group">
+                    <label for="oefening">Oefening:</label>
+                    <input type="text" id="oefening" name="Oefeningen" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sets">Sets:</label>
+                    <input type="number" id="sets" name="Sets" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="aantal">Aantal herhalingen:</label>
+                    <input type="number" id="aantal" name="Aantal_keer" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="omschrijving">Omschrijving:</label>
+                    <textarea id="omschrijving" name="Omschrijving" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Oefening Toevoegen</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

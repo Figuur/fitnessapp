@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* overflow: hidden; */
+    margin: 0;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        width: 100%; /* Eén kaart per rij op smalle schermen */
+    }
+}
+
+.card-container {
+    width: 340px; /* Zorgt ervoor dat er precies twee kaarten naast elkaar passen */
+    background-color: beige;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.gegevens {
+    margin: 10px;
+}
+
+.foto img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table cell styling */
+table td:first-child {
+    width: 66.67%;
+    padding: 10px;
+    border-bottom: 1px dashed #c2b9b9; /* donkergrijze border */
+}
+
+table td:last-child {
+    width: 33.33%;
+    padding: 10px;
+    border-bottom: 1px dashed #c2b9b9;
+}
+
+/* Remove border from last row */
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Right align only the gegevens inside table cells */
+table td .gegevens {
+    text-align: right;
+}
+
+/* Aanmaken oefening */
+.exercise-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-white);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: var(--dropdown-bg);
+    color: var(--text-white);
+}
+
+.submit-btn {
+    background-color: var(--dropdown-bg);
+    color: var(--text-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #4e4e4e;
+}

@@ -1,0 +1,5 @@
+haal de gegevens op
+maak een lijst met oefeningen
+klik door naar specifieke oefeningen
+
+
