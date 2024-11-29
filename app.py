@@ -26,19 +26,22 @@ def alleoefeningen():
     ]
     return data
 
-@app.route('/add_exercise', methods=['POST'])
-def add_exercise():
-    data = request.json
-    
+@app.route('/bench_oefeningen', methods=['POST'])
+
+def bench_oefeningen():
+
+    oefening = request.json
+    print("hallo")
     # Voeg nieuwe oefening toe aan de database
-    new_exercise = {
-        'Oefeningen': data['Oefeningen'],
-        'Sets': data['Sets'],
-        'Aantal_keer': data['Aantal_keer'],
-        'Omschrijving': data['Omschrijving']
-    }
+    print(oefening["duur"])
     
-    # Voeg hier je database logica toe
-    # Bijvoorbeeld: db.bench_oefeningen.insert_one(new_exercise)
+
+    sql = "INSERT INTO bench_oefeningen (duur, sets) VALUES (%s, %s)"
+    val = (oefening["duur"], 21)
+
+    mycursor = mydb.cursor()
+    mycursor.execute(sql, val)
+
+    mydb.commit()
     
-    return jsonify({'message': 'Exercise added successfully'})
+    return "<p>Hello, World!!! ??? </p>"
