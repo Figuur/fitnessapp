@@ -31,23 +31,23 @@
         <div class="container">
             <div class="card-container">
                 <div class="foto">
-                    <img id="afbeelding" src="" alt="fitness" />
+                    <img id="afbeelding0" src="" alt="fitness" />
                 </div>
-                <div class="gegevens" id="oefening"></div>
+                <div class="gegevens" id="oefening0"></div>
                 <table>
                     <tr>
 
-                        <td>Sets</td><td><div class="gegevens" id="sets"></div></td>
+                        <td>Sets</td><td><div class="gegevens" id="sets0"></div></td>
                     </tr>
                     <tr>
-                        <td>Duur</td><td><div class="gegevens" id="duur"></div></td>
+                        <td>Duur</td><td><div class="gegevens" id="duur0"></div></td>
                     </tr>
                     <tr>
-                        <td>Aantal</td><td><div class="gegevens" id="aantal"></div></td>
+                        <td>Aantal</td><td><div class="gegevens" id="aantal0"></div></td>
                     </tr>
             </table>
             <h4>omschrijving:</h4>
-            <div class="gegevens" id="omschrijving"></div></td>
+            <div class="gegevens" id="omschrijving0"></div></td>
             </div>
 
         <div class="card-container">
@@ -127,67 +127,66 @@
 </html>
 
 <script>
-    alert("hallo")
     fetch("http://127.0.0.1:5000//bench_oefeningen")
         .then((r) => r.json())
         .then((d) => toonOefeningen(d));
 
     function toonOefeningen(bench_oefeningen) {
-        alert("hallo")
+        for(i = 0; i < 4; i++) {
         console.log(bench_oefeningen);
-        document.getElementById("afbeelding").src = bench_oefeningen[0].foto;
-        document.getElementById("duur").innerHTML = bench_oefeningen[0].duur;
+        document.getElementById("afbeelding" +i).src = bench_oefeningen[i].foto;
+        document.getElementById("duur"+i).innerHTML = bench_oefeningen[i].duur;
         document.getElementById(
-            "oefening"
-        ).innerHTML = `<h1> ${bench_oefeningen[0].Oefeningen} </h1>`;
-        document.getElementById("sets").innerHTML =
-            bench_oefeningen[0].Sets + "x";
-        document.getElementById("aantal").innerHTML =
-            bench_oefeningen[0].Aantal_keer + "x";
-        document.getElementById("omschrijving").innerHTML =
-            bench_oefeningen[0].Omschrijving;
+            "oefening"+i
+        ).innerHTML = `<h1> ${bench_oefeningen[i].Oefeningen} </h1>`;
+        document.getElementById("sets"+i).innerHTML =
+            bench_oefeningen[i].Sets + "x";
+        document.getElementById("aantal"+i).innerHTML =
+            bench_oefeningen[i].Aantal_keer + "x";
+        document.getElementById("omschrijving"+i).innerHTML =
+            bench_oefeningen[i].Omschrijving;
+        }
+    //     // tweede oefening
+    //     console.log(bench_oefeningen);
+    //     document.getElementById("afbeelding1").src = bench_oefeningen[1].foto;
+    //     document.getElementById("duur1").innerHTML = bench_oefeningen[1].duur;
+    //     document.getElementById(
+    //         "oefening1"
+    //     ).innerHTML = `<h1> ${bench_oefeningen[1].Oefeningen} </h1>`;
+    //     document.getElementById("sets1").innerHTML =
+    //         bench_oefeningen[1].Sets + "x";
+    //     document.getElementById("aantal1").innerHTML =
+    //         bench_oefeningen[1].Aantal_keer + "x";
+    //     document.getElementById("omschrijving1").innerHTML =
+    //         bench_oefeningen[1].Omschrijving;
 
-        // tweede oefening
-        console.log(bench_oefeningen);
-        document.getElementById("afbeelding1").src = bench_oefeningen[1].foto;
-        document.getElementById("duur1").innerHTML = bench_oefeningen[1].duur;
-        document.getElementById(
-            "oefening1"
-        ).innerHTML = `<h1> ${bench_oefeningen[1].Oefeningen} </h1>`;
-        document.getElementById("sets1").innerHTML =
-            bench_oefeningen[1].Sets + "x";
-        document.getElementById("aantal1").innerHTML =
-            bench_oefeningen[1].Aantal_keer + "x";
-        document.getElementById("omschrijving1").innerHTML =
-            bench_oefeningen[1].Omschrijving;
+    //     // derde oefening
+    //     console.log(bench_oefeningen);
+    //     document.getElementById("afbeelding2").src = bench_oefeningen[2].foto;
+    //     document.getElementById("duur2").innerHTML = bench_oefeningen[2].duur;
+    //     document.getElementById(
+    //         "oefening2"
+    //     ).innerHTML = `<h1> ${bench_oefeningen[2].Oefeningen} </h1>`;
+    //     document.getElementById("sets2").innerHTML =
+    //         bench_oefeningen[2].Sets + "x";
+    //     document.getElementById("aantal2").innerHTML =
+    //         bench_oefeningen[2].Aantal_keer + "x";
+    //     document.getElementById("omschrijving2").innerHTML =
+    //         bench_oefeningen[2].Omschrijving;
 
-        // derde oefening
-        console.log(bench_oefeningen);
-        document.getElementById("afbeelding2").src = bench_oefeningen[2].foto;
-        document.getElementById("duur2").innerHTML = bench_oefeningen[2].duur;
-        document.getElementById(
-            "oefening2"
-        ).innerHTML = `<h1> ${bench_oefeningen[2].Oefeningen} </h1>`;
-        document.getElementById("sets2").innerHTML =
-            bench_oefeningen[2].Sets + "x";
-        document.getElementById("aantal2").innerHTML =
-            bench_oefeningen[2].Aantal_keer + "x";
-        document.getElementById("omschrijving2").innerHTML =
-            bench_oefeningen[2].Omschrijving;
-
-        // vierde oefening
-        console.log(bench_oefeningen);
-        document.getElementById("afbeelding3").src = bench_oefeningen[3].foto;
-        document.getElementById("duur3").innerHTML = bench_oefeningen[3].duur;
-        document.getElementById(
-            "oefening3"
-        ).innerHTML = `<h1> ${bench_oefeningen[3].Oefeningen} </h1>`;
-        document.getElementById("sets3").innerHTML =
-            bench_oefeningen[3].Sets + "x";
-        document.getElementById("aantal3").innerHTML =
-            bench_oefeningen[3].Aantal_keer + "x";
-        document.getElementById("omschrijving3").innerHTML =
-            bench_oefeningen[3].Omschrijving;
+    //     // vierde oefening
+    //     console.log(bench_oefeningen);
+    //     document.getElementById("afbeelding3").src = bench_oefeningen[3].foto;
+    //     document.getElementById("duur3").innerHTML = bench_oefeningen[3].duur;
+    //     document.getElementById(
+    //         "oefening3"
+    //     ).innerHTML = `<h1> ${bench_oefeningen[3].Oefeningen} </h1>`;
+    //     document.getElementById("sets3").innerHTML =
+    //         bench_oefeningen[3].Sets + "x";
+    //     document.getElementById("aantal3").innerHTML =
+    //         bench_oefeningen[3].Aantal_keer + "x";
+    //     document.getElementById("omschrijving3").innerHTML =
+    //         bench_oefeningen[3].Omschrijving;
     }
 </script>
 
