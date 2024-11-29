@@ -1,0 +1,22 @@
+Bench Oefeningen
+Squat Oefeningen
+Deadlift Oefeningen
+Shoulder Oefeningen
+
+En update de JavaScript om met deze specifieke oefeningen te werken:
+
+// Event listener voor de dropdown
+document.getElementById('oefening-type').addEventListener('change', function(e) {
+    const selectedType = e.target.value;
+    if(selectedType) {
+        // Fetch de geselecteerde oefeningen
+        fetch(`http://127.0.0.1:5000/${selectedType}_oefeningen`)
+            .then(r => r.json())
+            .then(data => {
+                toonOefeningen(data);
+            })
+            .catch(error => {
+                console.error('Error fetching exercises:', error);
+            });
+    }
+});

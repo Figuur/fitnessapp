@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Gallerij</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Fitness 1">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" alt="Fitness 2">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5" alt="Fitness 3">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f" alt="Fitness 4">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155" alt="Fitness 5">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c" alt="Fitness 6">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1591291621164-2c6367723315" alt="Fitness 7">
+        </div>
+        <div class="gallery-item empty-tile" draggable="true">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61" alt="Fitness 8">
+        </div>
+        
+        <!-- Lege tegels -->
+        <div class="gallery-item empty-tile" draggable="true"></div>
+        <div class="gallery-item empty-tile" draggable="true"></div>
+        <div class="gallery-item empty-tile" draggable="true"></div>
+        <div class="gallery-item empty-tile" draggable="true"></div>
+    </div>
+    <script src="gallery.js"></script>
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.gallery-item');
+    let draggedItem = null;
+
+    items.forEach(item => {
+        // Drag start event
+        item.addEventListener('dragstart', function(e) {
+            draggedItem = this;
+            setTimeout(() => this.classList.add('dragging'), 0);
+        });
+
+        // Drag end event
+        item.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+            draggedItem = null;
+        });
+
+        // Drag over event
+        item.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        // Drop event
+        item.addEventListener('drop', function(e) {
+            e.preventDefault();
+            if (this !== draggedItem) {
+                let allItems = [...document.querySelectorAll('.gallery-item')];
+                let draggedIndex = allItems.indexOf(draggedItem);
+                let droppedIndex = allItems.indexOf(this);
+
+                if (draggedIndex < droppedIndex) {
+                    this.parentNode.insertBefore(draggedItem, this.nextSibling);
+                } else {
+                    this.parentNode.insertBefore(draggedItem, this);
+                }
+            }
+        });
+    });
+});</script>

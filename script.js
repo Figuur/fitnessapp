@@ -1,27 +1,43 @@
-document.getElementById('newExerciseForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+let datum = new Date().toLocaleDateString();
+document.getElementById('datum').innerHTML = `<h1>Datum: ${datum}</h1>`;
 
-    const formData = {
-        Oefeningen: document.getElementById('oefening').value,
-        Sets: document.getElementById('sets').value,
-        Aantal_keer: document.getElementById('aantal').value,
-        Omschrijving: document.getElementById('omschrijving').value
-    };
 
-    fetch('http://127.0.0.1:5000/add_exercise', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Oefening succesvol toegevoegd!');
-        document.getElementById('newExerciseForm').reset();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Er is een fout opgetreden bij het toevoegen van de oefening.');
-    });
+const toggleSwitch = document.querySelector('#checkbox');
+const body = document.body;
+
+toggleSwitch.addEventListener('change', function() {
+    body.classList.toggle('light-theme');
+    
+    // Save preference to localStorage
+    if(body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.setItem('theme', 'dark');
+    }
 });
+
+// Check for saved theme preference
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'light') {
+    body.classList.add('light-theme');
+    toggleSwitch.checked = true;
+}
+
+// Voeg deze functies toe aan je bestaande JavaScript
+function openModal() {
+    document.getElementById('workoutModal').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Voorkomt scrollen van de achtergrond
+}
+
+function closeModal() {
+    document.getElementById('workoutModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Herstelt scrollen
+}
+
+// Sluit modal als er buiten de content wordt geklikt
+window.onclick = function(event) {
+    const modal = document.getElementById('workoutModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}

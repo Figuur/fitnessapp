@@ -7,6 +7,27 @@
         <link rel="stylesheet" href="style1.css" />
     </head>
     <body>
+        <div class="header">
+            <div class="dropdown-container">
+                <select id="oefening-type" class="dropdown">
+                    <option value="">Selecteer oefening type</option>
+                    <option value="bench">Bench Oefeningen</option>
+                    <option value="squat">Squat Oefeningen</option>
+                    <option value="deadlift">Deadlift Oefeningen</option>
+                    <option value="shoulder">Shoulder Oefeningen</option>
+                </select>
+                <button class="add-workout-btn" onclick="openModal()">+ Nieuwe Workout</button>
+            </div>
+            <div id="datum">
+                <h1>WORKOUT OF THE DAY</h1>
+            </div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch">
+                    <input type="checkbox" id="checkbox">
+                    <div class="slider round"></div>
+                </label>
+            </div>
+        </div>
         <div class="container">
             <div class="card-container">
                 <div class="foto">
@@ -25,9 +46,10 @@
                         <td>Aantal</td><td><div class="gegevens" id="aantal"></div></td>
                     </tr>
             </table>
+            <h4>omschrijving:</h4>
             <div class="gegevens" id="omschrijving"></div></td>
             </div>
-        </div>
+
         <div class="card-container">
             <div class="foto">
                 <img id="afbeelding1" src="" alt="fitness" />
@@ -51,15 +73,67 @@
             <h4>omschrijving:</h4>
             <div class="gegevens" id="omschrijving1"></div>
         </div>
+        <div class="card-container">
+            <div class="foto">
+                <img id="afbeelding2" src="" alt="fitness" />
+            </div>
+            <div class="gegevens" id="oefening2"></div>
+            <table>
+                <tr>
+                    <td>Sets</td>
+                    <td><div class="gegevens" id="sets2"></div></td>
+                </tr>
+                <tr>
+                    <td>Duur</td>
+                    <td><div class="gegevens" id="duur2"></div></td>
+                </tr>
+                <tr>
+                    <td>Aantal</td>
+                    <td><div class="gegevens" id="aantal2"></div></td>
+                </tr>
+
+            </table>
+            <h4>omschrijving:</h4>
+            <div class="gegevens" id="omschrijving2"></div>
+        </div>
+        
+        <div class="card-container">
+            <div class="foto">
+                <img id="afbeelding3" src="" alt="fitness" />
+            </div>
+            <div class="gegevens" id="oefening3"></div>
+            <table>
+                <tr>
+                    <td>Sets</td>
+                    <td><div class="gegevens" id="sets3"></div></td>
+                </tr>
+                <tr>
+                    <td>Duur</td>
+                    <td><div class="gegevens" id="duur3"></div></td>
+                </tr>
+                <tr>
+                    <td>Aantal</td>
+                    <td><div class="gegevens" id="aantal3"></div></td>
+                </tr>
+
+            </table>
+            <h4>omschrijving:</h4>
+            <div class="gegevens" id="omschrijving3"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="drag.js"></script>
     </body>
 </html>
 
 <script>
+    alert("hallo")
     fetch("http://127.0.0.1:5000//bench_oefeningen")
         .then((r) => r.json())
         .then((d) => toonOefeningen(d));
 
     function toonOefeningen(bench_oefeningen) {
+        alert("hallo")
         console.log(bench_oefeningen);
         document.getElementById("afbeelding").src = bench_oefeningen[0].foto;
         document.getElementById("duur").innerHTML = bench_oefeningen[0].duur;
@@ -86,5 +160,65 @@
             bench_oefeningen[1].Aantal_keer + "x";
         document.getElementById("omschrijving1").innerHTML =
             bench_oefeningen[1].Omschrijving;
+
+        // derde oefening
+        console.log(bench_oefeningen);
+        document.getElementById("afbeelding2").src = bench_oefeningen[2].foto;
+        document.getElementById("duur2").innerHTML = bench_oefeningen[2].duur;
+        document.getElementById(
+            "oefening2"
+        ).innerHTML = `<h1> ${bench_oefeningen[2].Oefeningen} </h1>`;
+        document.getElementById("sets2").innerHTML =
+            bench_oefeningen[2].Sets + "x";
+        document.getElementById("aantal2").innerHTML =
+            bench_oefeningen[2].Aantal_keer + "x";
+        document.getElementById("omschrijving2").innerHTML =
+            bench_oefeningen[2].Omschrijving;
+
+        // vierde oefening
+        console.log(bench_oefeningen);
+        document.getElementById("afbeelding3").src = bench_oefeningen[3].foto;
+        document.getElementById("duur3").innerHTML = bench_oefeningen[3].duur;
+        document.getElementById(
+            "oefening3"
+        ).innerHTML = `<h1> ${bench_oefeningen[3].Oefeningen} </h1>`;
+        document.getElementById("sets3").innerHTML =
+            bench_oefeningen[3].Sets + "x";
+        document.getElementById("aantal3").innerHTML =
+            bench_oefeningen[3].Aantal_keer + "x";
+        document.getElementById("omschrijving3").innerHTML =
+            bench_oefeningen[3].Omschrijving;
     }
 </script>
+
+<!-- Modal -->
+<div id="workoutModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Nieuwe Workout Toevoegen</h2>
+        <div class="exercise-form">
+            <!-- Bestaande form content -->
+            <div class="form-group">
+                <label for="exerciseName">Naam oefening:</label>
+                <input type="text" id="exerciseName" required>
+            </div>
+            <div class="form-group">
+                <label for="sets">Aantal sets:</label>
+                <input type="number" id="sets" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Duur (minuten):</label>
+                <input type="number" id="duration" required>
+            </div>
+            <div class="form-group">
+                <label for="reps">Aantal herhalingen:</label>
+                <input type="number" id="reps" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Omschrijving:</label>
+                <textarea id="description" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Toevoegen</button>
+        </div>
+    </div>
+</div>
