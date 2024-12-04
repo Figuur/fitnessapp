@@ -69,127 +69,34 @@ h4 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-content: start;
+    padding: 0 200px 0 200px;
 }
 
-@media (max-width: 768px) {
-    .card-container {
+
+@media (max-width: 
+2200px) {
+    .container {
         width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 0;
     }
 }
 
-.card-container {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    width: 450px; 
-    background-color: var(--background-dark);
-    color: var(--text-white);
-    padding: 20px;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    border-radius: 8px;
-    margin: 5px;
+@media (max-width: 
+1692px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        padding: 0;
+    }
 }
 
-.card-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 7px 7px 0px var(--primary-red);
-}
-
-.gegevens {
-    margin: 10px;
-}
-
-.foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table td:first-child {
-    width: 66.67%;
-    padding: 10px;
-    border-bottom: 1px dashed var(--primary-red);
-}
-
-table td:last-child {
-    width: 33.33%;
-    padding: 10px;
-    border-bottom: 1px dashed var(--text-black);
-}
-
-table tr:last-child td {
-    border-bottom: none;
-}
-
-table td .gegevens {
-    text-align: right;
-}
-
-table td:nth-child(2) {
-    background-color: var(--primary-red);
-    color: var(--text-black);
-}
-
-/* Aanmaken oefening */
-.exercise-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--text-white);
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: var(--dropdown-bg);
-    color: var(--text-white);
-}
-
-input:focus, textarea:focus {
-    outline: 1px solid #00ff62;
-}
-/* aanmaak pagina - Submit button styling */
-
-.aanmaak-container {
-    background-color: var(--background-dark);
-    padding: 20px;
-    color: var(--text-white);
-    border-radius: 8px;
-}
-
-.submit-btn {
-    background-color: var(--primary-red);
-    color: var(--text-white);
-    padding: 12px 30px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 20px;
-    width: 100%;
-    transition: 0.5s;
-}
-
-.submit-btn:hover {
-    background-color: var(--hover-green);
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
 }
 
 /* Header styling */
@@ -201,6 +108,25 @@ input:focus, textarea:focus {
     max-width: 1800px;
     margin: 0 auto 20px auto;
     padding: 20px;
+}
+
+@media (max-width: 
+1200px) {
+    .header {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+@media (max-width: 
+1200px) {
+    .header .theme-switch-wrapper {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 /* Dropdown container */
@@ -344,6 +270,143 @@ body.light-theme {
     color: var(--text-black);
 }
 
+
+.card-wrapper {
+    /* display: flex; */
+    width: 100%;
+}
+
+.card-container {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%; 
+    background-color: var(--background-dark);
+    color: var(--text-white);
+    padding: 20px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.card-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 7px 7px 0px var(--primary-red);
+}
+
+.close-icon {
+    display: flex;
+    justify-content: end;
+    color: #fff; 
+    font-weight:500; 
+    font-size: 1.4rem; 
+    /* text-align: right;  */
+    margin-bottom: 10px;
+}
+
+.close-icon :hover {
+    color:  var(--primary-red);
+}
+
+.gegevens {
+    margin: 10px;
+}
+
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td:first-child {
+    width: 66.67%;
+    padding: 10px;
+    border-bottom: 1px dashed var(--primary-red);
+}
+
+table td:last-child {
+    width: 33.33%;
+    padding: 10px;
+    border-bottom: 1px dashed var(--text-black);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table td .gegevens {
+    text-align: right;
+}
+
+table td:nth-child(2) {
+    background-color: var(--primary-red);
+    color: var(--text-black);
+}
+
+/* Aanmaken oefening */
+.exercise-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: var(--dropdown-bg);
+    color: var(--text-white);
+}
+
+input:focus, textarea:focus {
+    outline: 1px solid #00ff62;
+}
+/* aanmaak pagina - Submit button styling */
+
+.aanmaak-container {
+    background-color: var(--background-dark);
+    padding: 20px;
+    color: var(--text-white);
+    border-radius: 8px;
+}
+
+.submit-btn {
+    background-color: var(--primary-red);
+    color: var(--text-white);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.submit-btn:hover {
+    background-color: var(--hover-green);
+}
+
+
+
 /* Modal styling */
 .modal {
     display: none;
@@ -394,8 +457,17 @@ body.light-theme {
     font-weight: 600;
 }
 
+.light-theme .close-icon {
+    color: var(--text-dark);
+}
+
 .light-theme .close-btn {
     color: var(--text-dark);
+    transition: all 0.3s ease-in;
+}
+
+.light-theme .close-btn:hover {
+    color: var(--primary-red);
 }
 
 

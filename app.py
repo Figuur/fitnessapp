@@ -26,6 +26,24 @@ def alleoefeningen():
     ]
     return data
 
+# verwijder kaart probeersel 
+@app.route('/bench_oefeningen/<int:bench_oefeningen>')
+
+def delete(bench_oefeningen):
+    delete_card = delete.bench_oefeningen.get_or_404(bench_oefeningen)
+
+    try:
+        bench_oefeningen.session.delete(delete_card)
+        bench_oefeningen.session.commit()
+        
+
+    except:
+        return "er was een probleem met het verijderen van de kaart"
+
+    
+        
+    
+
 @app.route('/bench_oefeningen', methods=['POST'])
 
 def bench_oefeningen():
@@ -36,8 +54,8 @@ def bench_oefeningen():
     print(oefening["duur"])
     
 
-    sql = "INSERT INTO bench_oefeningen (duur, sets) VALUES (%s, %s)"
-    val = (oefening["duur"], 21)
+    sql = "INSERT INTO bench_oefeningen (duur, sets, Aantal_keer, oefeningen, Omschrijving) VALUES (%s, %s, %s, %s, %s)"
+    val = (oefening["duur"], oefening["sets"], oefening["Aantal_keer"], oefening["oefeningen"], oefening["Omschrijving"])
 
     mycursor = mydb.cursor()
     mycursor.execute(sql, val)
@@ -45,3 +63,18 @@ def bench_oefeningen():
     mydb.commit()
     
     return "<p>Hello, World!!! ??? </p>"
+
+@app.route("/upload", methods=["POST"])
+def uploaden():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    if file:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+    return jsonify({'message': 'File uploaded successfully', 'file_path': file_path}), 200

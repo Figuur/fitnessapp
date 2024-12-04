@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Fitness Oefeningen</title>
         <link rel="stylesheet" href="style1.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <div class="header">
@@ -44,7 +45,12 @@
             console.log("Hallo")
 
             let oefening = {}
+            oefening.bench_oefeningen = document.getElementById("row-id");
             oefening.duur = document.getElementById("duration").value;
+            oefening.sets = document.getElementById("sets").value;
+            oefening.Aantal_keer = document.getElementById("reps").value;
+            oefening.oefeningen = document.getElementById("exerciseName").value;
+            oefening.Omschrijving = document.getElementById("description").value;
             fetch("http://127.0.0.1:5000//bench_oefeningen", {
                 headers: {
                     'Accept': 'application.json',
@@ -55,12 +61,15 @@
             })
         }
 
+
         drag()
     function toonOefeningen(bench_oefeningen) {
         for(i = 0; i < bench_oefeningen.length; i++) {
             document.getElementById("kaart-wrapper"). innerHTML += 
-`
-            <div class="card-container">
+`           <div class="card-wrapper">
+            <div class="card-container" id="drag">
+                
+                <div onclick="delete" class="close-icon" id="row-id"><i class="fa-solid fa-circle-xmark"></i>${bench_oefeningen[i].bench_oefeningen}</div>
                 <div class="foto">
                     <img id="afbeelding0" src="${bench_oefeningen[i].foto}" alt="fitness" />
                 </div>
@@ -79,6 +88,7 @@
             </table>
             <h4>omschrijving:</h4>
             <div class="gegevens" id="omschrijving0">${bench_oefeningen[i].Omschrijving}</div></td>
+            </div>
             </div>
 `
         }
@@ -124,6 +134,7 @@
     //     document.getElementById("omschrijving3").innerHTML =
     //         bench_oefeningen[3].Omschrijving;
     }
+
 </script>
 
 <!-- Modal -->
@@ -148,6 +159,10 @@
             <div class="form-group">
                 <label for="reps">Aantal herhalingen:</label>
                 <input type="number" id="reps" required>
+            </div>
+            <div class="form-group">
+                <label for="reps">Afbeelding toevoegen</label>
+                <input type="image" id="foto" src="" required>
             </div>
             <div class="form-group">
                 <label for="description">Omschrijving:</label>
