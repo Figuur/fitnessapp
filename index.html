@@ -37,7 +37,7 @@
 </html>
 
 <script>
-    fetch("http://127.0.0.1:5000//bench_oefeningen")
+    fetch("http://127.0.0.1:5000//bench_oefeningen1")
         .then((r) => r.json())
         .then((d) => toonOefeningen(d));
 
@@ -69,7 +69,7 @@
 `           <div class="card-wrapper">
             <div class="card-container" id="drag">
                 
-                <div onclick="delete" class="close-icon" id="row-id"><i class="fa-solid fa-circle-xmark"></i>${bench_oefeningen[i].bench_oefeningen}</div>
+                <div onclick="verwijderen(${bench_oefeningen[i].bench_oefeningen})" class="close-icon" id="row-id"><i class="fa-solid fa-circle-xmark"></i>${bench_oefeningen[i].bench_oefeningen}</div>
                 <div class="foto">
                     <img id="afbeelding0" src="${bench_oefeningen[i].foto}" alt="fitness" />
                 </div>

@@ -43,3 +43,8 @@ window.onclick = function(event) {
 }
 
 // verwijderen van kaartjes
+function verwijderen(oefening_index) {
+    console.log(oefening_index)
+    fetch("http://127.0.0.1:5000//bench_oefeningen3/" + oefening_index)
+
+}

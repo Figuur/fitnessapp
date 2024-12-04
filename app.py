@@ -15,7 +15,7 @@ mydb = mysql.connector.connect(
 def oefeningen():
     return "halter benchpress"
 
-@app.route("/bench_oefeningen")
+@app.route("/bench_oefeningen1")
 def alleoefeningen():
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * FROM bench_oefeningen")
@@ -27,21 +27,21 @@ def alleoefeningen():
     return data
 
 # verwijder kaart probeersel 
-@app.route('/bench_oefeningen/<int:bench_oefeningen>')
+@app.route('/bench_oefeningen3/<int:bench_oefeningen>')
 
-def delete(bench_oefeningen):
-    delete_card = delete.bench_oefeningen.get_or_404(bench_oefeningen)
+def verwijderen(bench_oefeningen):
+    print("verwijderen",bench_oefeningen)
 
-    try:
-        bench_oefeningen.session.delete(delete_card)
-        bench_oefeningen.session.commit()
-        
-
-    except:
-        return "er was een probleem met het verijderen van de kaart"
 
     
-        
+    sql = "DELETE FROM bench_oefeningen WHERE bench_oefeningen = %s"
+    val = (bench_oefeningen,)
+    mycursor = mydb.cursor()
+    mycursor.execute(sql, val)
+
+    mydb.commit()
+
+    return "verwijderen"
     
 
 @app.route('/bench_oefeningen', methods=['POST'])
