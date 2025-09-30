@@ -1,14 +1,17 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
-app = Flask(__name__)
-cors = CORS(app)
+from flask_cors import CORS
 import mysql.connector
+import os
 
+app = Flask(__name__)
+CORS(app)
+
+# Lokale database connectie
 mydb = mysql.connector.connect(
-  host="raimondappdb.mysql.database.azure.com",  #port erbij indien mac
-  user="raimondadmin",
-  password="uiop7890UIOP&*()",
-  database="lutsendb"
+    host="localhost",
+    user="root",
+    password="",
+    database="lutsendb"
 )
 
 @app.route("/testkort")
@@ -21,48 +24,32 @@ def alleoefeningen():
     mycursor.execute("SELECT * FROM bench_oefeningen")
     myresult = mycursor.fetchall()
     keys = [i[0] for i in mycursor.description]
-    data = [
-        dict(zip(keys, row)) for row in myresult
-    ]
-    return data
+    data = [dict(zip(keys, row)) for row in myresult]
+    return jsonify(data)  # gebruik jsonify voor JSON response
 
-# verwijder kaart probeersel 
-@app.route('/bench_oefeningen3/<int:bench_oefeningen>')
-
-def verwijderen(bench_oefeningen):
-    print("verwijderen",bench_oefeningen)
-
-
-    
-    sql = "DELETE FROM bench_oefeningen WHERE bench_oefeningen = %s"
-    val = (bench_oefeningen,)
+@app.route('/bench_oefeningen3/<int:oef_id>', methods=['DELETE'])
+def verwijderen(oef_id):
     mycursor = mydb.cursor()
-    mycursor.execute(sql, val)
-
+    sql = "DELETE FROM bench_oefeningen WHERE id = %s"
+    mycursor.execute(sql, (oef_id,))
     mydb.commit()
-
-    return "verwijderen"
-    
+    return jsonify({'message': f'Oefening {oef_id} verwijderd'})
 
 @app.route('/bench_oefeningen', methods=['POST'])
-
-def bench_oefeningen():
-
+def toevoegen():
     oefening = request.json
-    print("hallo")
-    # Voeg nieuwe oefening toe aan de database
-    print(oefening["duur"])
-    
-
-    sql = "INSERT INTO bench_oefeningen (duur, sets, Aantal_keer, oefeningen, Omschrijving) VALUES (%s, %s, %s, %s, %s)"
-    val = (oefening["duur"], oefening["sets"], oefening["Aantal_keer"], oefening["oefeningen"], oefening["Omschrijving"])
-
+    sql = """
+        INSERT INTO bench_oefeningen (duur, sets, Aantal_keer, oefeningen, Omschrijving) 
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    val = (
+        oefening["duur"], oefening["sets"], oefening["Aantal_keer"], 
+        oefening["oefeningen"], oefening["Omschrijving"]
+    )
     mycursor = mydb.cursor()
     mycursor.execute(sql, val)
-
     mydb.commit()
-    
-    return "<p>Hello, World!!! ??? </p>"
+    return jsonify({'message': 'Oefening toegevoegd!'})
 
 @app.route("/upload", methods=["POST"])
 def uploaden():
@@ -74,7 +61,8 @@ def uploaden():
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
 
-    if file:
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(file_path)
-    return jsonify({'message': 'File uploaded successfully', 'file_path': file_path}), 200
+    UPLOAD_FOLDER = './uploads'
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(file_path)
+    return jsonify({'message': 'File uploaded successfully', 'file_path': file_path})
